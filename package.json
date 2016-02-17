@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/CYRIAQU3/peridot#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "request": "^2.69.0"
   }
 }
