@@ -1,0 +1,59 @@
+#logo
+{
+  margin:auto;
+  margin-top:20vh;
+  text-align:center;
+}
+
+.cygle
+{
+  margin:auto;
+  width:150px;
+  margin-bottom:20px;
+}
+
+.row
+{
+  
+}
+
+.dot
+{
+  display:inline-block;
+  border-radius:100%;
+  background-color:#16A085;
+  padding:10%;
+  margin:3%;
+  transition-duration:0.3s;
+}
+
+.dot.blue
+{
+  background-color:#2980B9;
+}
+
+.dot.blue.light
+{
+  background-color:#3498DB;
+}
+
+.dot.green
+{
+  background-color:#16A085;
+}
+.dot.green.light
+{
+  background-color:#1ABC9C;
+}
+
+h1
+{
+  vertical-align:middle;
+  display:inline-block;
+  text-align:center;
+  font-size:75px;
+  color:#ecf0f1;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  margin-top:-10px;
+}

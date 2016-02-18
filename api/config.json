@@ -1,0 +1,32 @@
+{
+	"db" :
+	{
+		"host"     : "localhost",
+        "user"     : "root",
+        "password" : "",
+        "database" : "peridot"
+	},
+	"tables" :
+	{
+		"users":
+		{
+			"table" : "users",
+			"rows" :
+			[
+				"id","nickname","avatar_url"
+			],
+			"required" :
+			[
+				"nickname","avatar_url"
+			]
+		},
+		"me":
+		{
+			"table" : "users",
+			"rows" :
+			[
+				"id","nickname","signup_date","email","avatar_url"
+			]
+		}
+	}
+}

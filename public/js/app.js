@@ -1,5 +1,7 @@
+var apiIndex = "http://localhost:3000";
 var app = angular.module('peridot', [
-'ui.router'
+'ui.router',
+'ngCookies'
     ]);
 
 app.config(['$httpProvider',
@@ -23,6 +25,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "views/login.html",
       controller: "loginCtrl"
     })
+    .state('signup', {
+      url: "/signup",
+      templateUrl: "views/signup.html",
+      controller: "signUpCtrl"
+    })
     .state('room',{
       url : "/{roomId:int}",
       templateUrl:"views/room.html",
@@ -33,7 +40,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 app.controller('mainCtrl', ['$scope', '$http','$rootScope','$cookies', function($scope, $http,$rootScope,$cookies)
 {
   
-  $http.get(apiIndex+"/me?token="+$cookies.get("sbstr_token"))
+  $http.get(apiIndex+"/me?token="+$cookies.get("pd_token"))
   .then(function(r)
   {
     if(r.data.success)

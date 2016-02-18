@@ -11,3 +11,6 @@ app.use('/', express.static(__dirname + '/public/'));
 app.listen(port, function () {
   console.log('Peridot is active on port '+port);
 });
+
+var fork = require('child_process').fork;
+var api = fork('./api/app.js');	// load the api
