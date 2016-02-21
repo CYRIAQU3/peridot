@@ -27,6 +27,34 @@
 			[
 				"id","nickname","signup_date","email","avatar_url"
 			]
+		},
+		"channels":
+		{
+			"table" : "channels",
+			"rows" :
+			[
+				"*"
+			]
+		},
+		"channel_files":
+		{
+			"table" : "channel_files",
+			"rows" :
+			[
+				"*"
+			],
+			"required" :
+			[
+				"url","name","channel_id"
+			]
+		},
+		"user_channels":
+		{
+			"table" : "user_channels",
+			"rows" :
+			[
+				"*"
+			]
 		}
 	}
 }

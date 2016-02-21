@@ -10,9 +10,11 @@ function($httpProvider) {
 }]);
 
 app.config(function($stateProvider, $urlRouterProvider) {
+
   //
   // For any unmatched url, redirect to /
   $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.when('/studio', '/studio/files');
   //
   // Now set up the states
   $stateProvider
@@ -30,10 +32,23 @@ app.config(function($stateProvider, $urlRouterProvider) {
       templateUrl: "views/signup.html",
       controller: "signUpCtrl"
     })
-    .state('room',{
-      url : "/{roomId:int}",
-      templateUrl:"views/room.html",
-      controller:"roomCtrl"
+    .state('channel',{
+      url : "/{channelId:int}",
+      templateUrl:"views/channel.html",
+      controller:"channelCtrl"
+    })
+    .state('studio',{
+      url : "/studio",
+      templateUrl:"views/studio.html",
+      controller:"studioCtrl"
+    })
+    .state('studio.files',{
+      url : "/files",
+      templateUrl:"views/studio/files.html"
+    })
+    .state('studio.settings',{
+      url : "/settings",
+      templateUrl:"views/studio/settings.html"
     });
 });
 

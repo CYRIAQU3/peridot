@@ -8,6 +8,7 @@ var check = function(req,callback)
 
 	var post = req.body;
 	var token = req.query.token;
+    var channelId = req.query.channel_id;
 
 	async.series([			//exec all function async
 
@@ -28,6 +29,17 @@ var check = function(req,callback)
     {
         if(!token)
         {
+            r.message = "MISSING_REQUIRED_VALUE_TOKEN";
+            callback(r);
+            return;
+        }
+        callback(null);
+    },
+    function(callback)
+    {
+        if(!channelId)
+        {
+            r.message = "MISSING_REQUIRED_VALUE_CHANNEL_ID";
             callback(r);
             return;
         }
@@ -55,34 +67,7 @@ var check = function(req,callback)
             userId = rows[0].user_id;
             callback(null);
         });
-    },
-
-    function(callback)                  //check if the target exist
-    {
-        db.checkIfExist("subtitle_sheets",post.subtitle_sheet_id,function(exist)
-        {
-            if(!exist)
-            {
-            	r.statusCode = 403,
-                r.message = "INVALID_SHEET";
-                callback(r);
-                return;
-            }
-            callback(null);
-        });
-    },
-
-	function(callback)
-	{
-		if(	!validator.isFloat(post.start_time) ||
-		!validator.isFloat(post.end_time))
-		{
-			r.message = "INVALID_INPUT";
-			callback(r);
-			return;
-		}
-		callback(null);
-	}
+    }
 
 	],
 	function(ret)		//everything ok, send to the db
@@ -93,7 +78,7 @@ var check = function(req,callback)
             return;
         }
 
-		db.query('INSERT into subtitles set subtitle_sheet_id = "'+post.subtitle_sheet_id+'", start_time = "'+post.start_time+'", end_time = "'+post.end_time+'"', function(err, result)
+		db.query('INSERT into channel_files set url = "'+post.url+'", name = "'+post.name+'", channel_id = "'+channelId+'"', function(err, result)
 		{
 	        if (err)
 	        {

@@ -6,8 +6,8 @@ body
 {
   background-color:#34495E;
   color: #ECF0F1;
+  margin-top:50px;
 }
-
 
 a,a:visited
 {
@@ -21,29 +21,25 @@ a:hover
 	text-decoration: none;
 }
 
-nav
+nav.navbar-default
 {
-  text-align:right;
-  	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	z-index: 3;
+  	background-color: transparent;
+  	border-bottom: 0;
+}
+
+.navbar-default .navbar-nav>li>a,.navbar-default .navbar-nav>li>a:visited
+{
+	color: #bdc3c7;
+}
+
+.navbar-default .navbar-nav>li>a:hover
+{
+	color: #ffffff;
 }
 
 nav ul li
 {
-	list-style-type:none;
-	display:inline-block;
-	text-decoration: none;
-	font-size: 16px;
-	font-family: 'Raleway', sans-serif;
-	margin:0px 15px 0px 10px;
-	padding-top: 15px;
-	padding-bottom:15px;
-	transition-duration:0.3s;
-	border-bottom:1px transparent solid;
-	cursor:pointer;
+	color:#ffffff;
 }
 
 nav ul li:hover

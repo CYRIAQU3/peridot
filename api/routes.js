@@ -39,7 +39,6 @@ app.get('/:table([a-z_]{1,40})', function(req,res)
             rTable = "nothing";
         }
         
-        console.log("limit : "+limit);
         db.query('SELECT '+rList+' FROM '+rTable+' ORDER BY id DESC '+limit, req.params.id, function(err, rows, fields) {
             if (err) {
                 console.error(err);
@@ -86,15 +85,13 @@ app.get('/:table([a-z_]{1,40})/:id([0-9]{1,11})', function(req,res){
     {
         rList = "nothing";
         rTable = "nothing";
-        if (err) {
-            res.statusCode = 304;
-            res.send({
-                statusCode : 304,
-                success: false,
-                message:    req.params.table+" not exist"
-            });
-            return;
-        }
+        res.statusCode = 304;
+        res.send({
+            statusCode : 304,
+            success: false,
+            message:    req.params.table+" not exist"
+        });
+        return;
     }
     db.query('SELECT '+rList+' FROM '+rTable+' WHERE id = '+req.params.id+' ORDER BY id DESC '+limit, req.params.id, function(err, rows, fields) {
         if (err) {
@@ -121,9 +118,11 @@ app.get('/:table([a-z_]{1,40})/:id([0-9]{1,11})', function(req,res){
     });
 });
 
+//ex : /channels/1/channel_files
 app.get('/:table([a-z_]{1,40})/:id([0-9]{1,11})/:row([a-z_]{1,40})', function(req,res){
     var rList = "";
     var limit = "LIMIT "+parseInt(req.query.limit);
+    var rowName = req.params.row;
     if(!req.query.limit)
     {
         limit = "LIMIT 20";
@@ -132,15 +131,16 @@ app.get('/:table([a-z_]{1,40})/:id([0-9]{1,11})/:row([a-z_]{1,40})', function(re
     {
         limit = "";
     }
-    if(config.tables[req.params.row])
+    
+    if(config.tables[rowName])
     {
         var t = [];
-        for (var i = 0; i < config.tables[req.params.row].rows.length; i++) 
+        for (var i = 0; i < config.tables[rowName].rows.length; i++) 
         {
-            t.push(""+req.params.row+"."+config.tables[req.params.row].rows[i]);
+            t.push(""+req.params.row+"."+config.tables[rowName].rows[i]);
         }
         rList = t.toString();
-        rTable = config.tables[req.params.row].table;
+        rTable = config.tables[rowName].table;
         singleTableName = req.params.table.substring(0, req.params.table.length - 1)+"_id";
     }
     else
@@ -148,17 +148,16 @@ app.get('/:table([a-z_]{1,40})/:id([0-9]{1,11})/:row([a-z_]{1,40})', function(re
         rList = "nothing";
         rTable = "nothing";
         singleTableName = 'nothing';
-        if (err) {
-            console.error(err);
-            res.statusCode = 304;
-            res.send({
-                statusCode : 304,
-                success: false,
-                message:    req.params.table+" not exist"
-            });
-            return;
-        }
+        res.statusCode = 304;
+        res.send({
+            statusCode : 304,
+            success: false,
+            message:    req.params.table+" not exist"
+        });
+        return;
     }
+
+
     db.query('SELECT '+rList+' FROM '+rTable+' INNER JOIN '+req.params.table+' ON '+rTable+'.'+singleTableName+' = '+req.params.table+'.id WHERE '+req.params.table+'.id = '+req.params.id+' ORDER BY '+rTable+'.id DESC '+limit, req.params.id, function(err, rows, fields) {
         if (err) {
             console.error(err);
@@ -176,30 +175,11 @@ app.get('/:table([a-z_]{1,40})/:id([0-9]{1,11})/:row([a-z_]{1,40})', function(re
             [req.params.row]: rows,
             length: rows.length
         });
-        return;
-    });
-});
-
-app.get('/*', function(req,res)
-{
-    connectionpool.getConnection(function(err, connection)
-    {
-        if (err) {
-            console.error('CONNECTION error: ',err);
-            res.statusCode = 503;
-            res.send({
-                statusCode : 503,
-                success: false,
-                message:  "UNABLE_TO_REACH_DATABASE "+err.code
-            });
-            return;
-        }
     });
 });
 
 app.post('/:table([a-z_]{1,20})', function(req,res){
     var f = req.params.table;
-    console.log(appRoot+'/controllers/post/'+f+'.js');
     if(fs.existsSync(appRoot+'/controllers/post/'+f+'.js')) //if a specific controller exist, exec it else, normal query
     {
         eval(fs.readFileSync(appRoot+'/controllers/post/'+f+'.js')+'');
@@ -223,7 +203,6 @@ app.post('/:table([a-z_]{1,20})', function(req,res){
 });
 app.put('/:table([a-z_]{1,20})/:param', function(req,res){
     var f = req.params.table;
-    console.log(appRoot+'/controllers/put/'+f+'.js');
     if(fs.existsSync(appRoot+'/controllers/put/'+f+'.js')) //if a specific controller exist, exec it else, normal query
     {
         eval(fs.readFileSync(appRoot+'/controllers/put/'+f+'.js')+'');

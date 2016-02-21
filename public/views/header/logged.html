@@ -1,2 +1,15 @@
-<a ui-sref="explore"><li><i class="mdi mdi-compass"></i> Explore</li></a>
-<a href="#/{{user.id}}"><li><i class="mdi mdi-account-box"></i>{{user.nickname}}</li></a>
+<li><a href="#/explore"><i class="mdi mdi-compass"></i> Explore</a></li>
+
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.nickname}} <span class="caret"></span></a>
+  <ul class="dropdown-menu">
+    <li><a href="#"><i class="mdi mdi-movie"></i> Studio</a></li>
+    <li><a href="#"><i class="mdi mdi-settings"></i> Settings</a></li>
+    <li role="separator" class="divider"></li>
+    <li ng-controller="logoutCtrl">
+		<a href="#" id="logout-button" ng-click="logout()">
+			<i class="mdi mdi-account-off"></i> Logout
+		</a>
+	</li>
+  </ul>
+</li>
