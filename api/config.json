@@ -36,9 +36,9 @@
 				"*"
 			]
 		},
-		"channel_files":
+		"files":
 		{
-			"table" : "channel_files",
+			"table" : "files",
 			"rows" :
 			[
 				"*"

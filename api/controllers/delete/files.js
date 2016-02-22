@@ -1,5 +1,4 @@
-var subtitleId = parseInt(req.params.param);
-var translationIds = [];
+var fileId = parseInt(req.params.param);
 var check = function(req,callback)
 {
     var r = {            //json return structure
@@ -48,7 +47,7 @@ var check = function(req,callback)
     },
     function(callback)                  //check if the target exist
     {
-        db.checkIfExist("subtitles",subtitleId,function(exist)
+        db.checkIfExist("files",fileId,function(exist)
         {
             if(!exist)
             {
@@ -72,7 +71,7 @@ var check = function(req,callback)
         async.series([
         function(callback)      //update subtitle
         {
-            db.query('DELETE from subtitle_translations where subtitle_id = "'+subtitleId+'"', function(err, rows, fields)
+            db.query('DELETE from files where id = "'+fileId+'"', function(err, rows, fields)
             {
                 if (err)
                 {
@@ -84,22 +83,6 @@ var check = function(req,callback)
                 }
                 callback(null);
                 
-            });
-        },
-
-        function(callback)      //update translation
-        {
-            db.query('DELETE from subtitles where id = "'+subtitleId+'"',function(err,rows,fields)
-            {
-                if (err)
-                {
-                    r.statusCode = 500;
-                    r.success = false;
-                    r.message = err;
-                    callback(r);
-                    return;
-                }
-                callback(null);
             });
         }],
         function(upt)

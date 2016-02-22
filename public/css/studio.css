@@ -1,7 +1,5 @@
 .file-bloc
 {
-	position: relative;
-	height:150px;
 	padding-top: 60px;
 	text-align: center;
 	border:1px #cccccc solid;
@@ -18,9 +16,6 @@
 .file-bloc .file-settings
 {
 	display: none;
-	position: absolute;
-	top: 0;
-	right: 0;
 }
 
 .file-bloc:hover .file-settings

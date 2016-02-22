@@ -78,7 +78,7 @@ var check = function(req,callback)
             return;
         }
 
-		db.query('INSERT into channel_files set url = "'+post.url+'", name = "'+post.name+'", channel_id = "'+channelId+'"', function(err, result)
+		db.query('INSERT into files set url = "'+post.url+'", name = "'+post.name+'", channel_id = "'+channelId+'"', function(err, result)
 		{
 	        if (err)
 	        {
