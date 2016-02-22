@@ -10,13 +10,16 @@
 <div class="room-content">
 	<div class="room-infos">
 		<div class="room-icon" style="background-image:url('http://lorempixel.com/100/100/')"></div>
-		<p class="room-name">Lorem ipsum</p>
+		<p class="room-name">{{channel.name}}</p>
 		<p class="room-state">EN DIRECT</p>
 	</div>
 	<ul class="room-chat-container">
-		<li class="room-message">
-			<div class="avatar" style="background-image:url('http://lorempixel.com/100/100/')"></div>
-			<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris ultrices non neque eu imperdiet.</p>
+		<li class="room-message" ng-repeat="message in socketManager.messages">
+			<div class="avatar" style="background-image:url('{{message.user.avatar_url}}')" title="{{message.user.nickname}}"></div>
+			<p>{{message.message}}</p>
 		</li>
 	</ul>
+	<form class="room-chat-input-container" ng-show="chatInputActive" ng-submit="socketManager.chat.emit.message(chatInputMessage);">
+		<input class="room-chat-input" type="text" name="text" placeholder="Type something..." ng-model="chatInputMessage" autocomplete="off">
+	</form>
 </div>

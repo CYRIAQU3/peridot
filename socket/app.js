@@ -36,6 +36,7 @@ io.on('connection', function (socket) {
         if (!error && String(response.statusCode).charAt(0) == 2) {
           var r = JSON.parse(body);
           socket.user = r.me[0];
+          console.log(socket.user.nickname+" joined "+currentChannel);
           socket.emit("authConfirm");
         }
         else

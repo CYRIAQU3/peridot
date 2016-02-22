@@ -1,4 +1,5 @@
 var apiIndex = "http://localhost:3000";
+var socketIndex = "http://localhost:5000";
 var app = angular.module('peridot', [
 'ui.router',
 'ngCookies'
