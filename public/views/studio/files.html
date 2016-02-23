@@ -1,0 +1,81 @@
+<div class="row">
+	<table class="table">
+		<tr class="file-bloc row" data-toggle="modal" data-target="#add-file-modal">
+			<td class="col-md-8">Ajouter un fichier</td>
+			<td class="col-md-4"></td>
+		</tr>
+		<tr ng-repeat="file in channel.files" class="file-bloc row">
+			<td class="col-md-8">{{file.name}}</td>
+			<td class="col-md-4">
+				<div class="file-settings btn-group pull-right">
+					<button class="btn btn-danger" data-toggle="modal" data-target="#remove-file-modal-{{file.id}}"><i class="mdi mdi-delete"></i></button>
+		  			<button class="btn btn-info" data-toggle="modal" data-target="#edit-file-modal-{{file.id}}"><i class="mdi mdi-pencil"></i></button>
+		  			<button class="btn btn-success" ng-click="socketManager.channel.emit.file(file);"><i class="mdi mdi-play-circle-outline"></i></button>
+				</div>
+			</td>
+		</tr>
+	</table>
+</div>
+
+<!-- Add Modal -->
+<div class="modal" id="add-file-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form class="modal-content" ng-submit="addFile(url,name,channel.id)">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Ajouter un fichier</h4>
+      </div>
+      <div class="modal-body">
+        <input type="url" name="url" ng-model="url" class="form-control" placeholder="url du fichier" required>
+        <input type="text" name="name" ng-model="name" class="form-control" placeholder="nom du fichier">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-success">Ajouter le fichier</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- remove file modal -->
+
+<div class="modal" ng-repeat="file in channel.files" id="remove-file-modal-{{file.id}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form class="modal-content" ng-submit="removeFile(file.id)">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Suppression</h4>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="file_id" required>
+        <h3>Supprimer le fichier <b>{{file.name}}</b> ?</h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-danger">Supprimer</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- edit file modal -->
+
+<div class="modal" ng-repeat="file in channel.files" id="edit-file-modal-{{file.id}}" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <form class="modal-content" ng-submit="editFile(file.url,file.name,file.id)">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modification du fichier {{file.name}}</h4>
+      </div>
+      <div class="modal-body">
+        <input type="hidden" name="file_id" required>
+        <input type="url" name="name" ng-model="file.url" placeholder="Url du fichier" class="form-control" required>
+        <input type="text" name="name" ng-model="file.name" placeholder="Nom du fichier" class="form-control" required>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+        <button type="submit" class="btn btn-primary">Sauvegarder</button>
+      </div>
+    </form>
+  </div>
+</div>

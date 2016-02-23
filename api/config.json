@@ -1,0 +1,60 @@
+{
+	"db" :
+	{
+		"host"     : "localhost",
+        "user"     : "root",
+        "password" : "",
+        "database" : "peridot"
+	},
+	"tables" :
+	{
+		"users":
+		{
+			"table" : "users",
+			"rows" :
+			[
+				"id","nickname","avatar_url"
+			],
+			"required" :
+			[
+				"nickname","avatar_url"
+			]
+		},
+		"me":
+		{
+			"table" : "users",
+			"rows" :
+			[
+				"id","nickname","signup_date","email","avatar_url"
+			]
+		},
+		"channels":
+		{
+			"table" : "channels",
+			"rows" :
+			[
+				"*"
+			]
+		},
+		"files":
+		{
+			"table" : "files",
+			"rows" :
+			[
+				"*"
+			],
+			"required" :
+			[
+				"url","name","channel_id"
+			]
+		},
+		"user_channels":
+		{
+			"table" : "user_channels",
+			"rows" :
+			[
+				"*"
+			]
+		}
+	}
+}

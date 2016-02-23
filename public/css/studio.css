@@ -1,0 +1,24 @@
+.file-bloc
+{
+	padding-top: 60px;
+	text-align: center;
+	border:1px #cccccc solid;
+	margin:5px;
+	border-radius:5px;
+}
+
+.file-bloc:hover
+{
+	background-color: rgba(0,0,0,0.2);
+	cursor: pointer;
+}
+
+.file-bloc .file-settings
+{
+	display: none;
+}
+
+.file-bloc:hover .file-settings
+{
+	display: block;
+}

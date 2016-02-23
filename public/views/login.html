@@ -1,0 +1,9 @@
+<form id="login-form" class="col-md-4 col-md-offset-4 text-center" ng-submit="login()">
+	<div class="login-logo"></div>
+	<div class="empty"></div>
+	<div class="alert alert-{{alertType}} col-md-12" role="alert" ng-show="alertDisplay" ng-i18next="{{alertMsg}}"></div>
+	<input name="nickname" type="text" placeholder="Pseudonyme" required>
+	<input type="password" placeholder="Mot de passe" name="password" required>
+	<button type="submit" class="btn btn-primary" ng-disabled="buttonDisabled">{{buttonLabel}}</button>
+	<google-plus-signin clientid="764121909006-j60k52p4rdmpr1d3m0acvj98eukk5evf.apps.googleusercontent.com"></google-plus-signin>
+</form>

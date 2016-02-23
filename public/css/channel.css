@@ -1,0 +1,107 @@
+.video-js
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%!important;
+	height: 100%!important;
+}
+
+.room-content
+{
+	position: absolute;
+	z-index: 2;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+}
+
+.room-content .room-infos
+{
+	text-align: right;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	padding:10px;
+	padding-bottom: 20px;
+	background: -webkit-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.6)); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.6)); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.6)); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.6)); /* Standard syntax */
+}
+
+.room-content .room-infos .room-icon
+{
+	float: right;
+	width: 50px;
+	height: 50px;
+	background-size:cover;
+	border-radius:40px;
+	margin-left: 20px;
+}
+
+.room-content .room-infos .room-name
+{
+	font-size: 20px;
+	color: #ffffff;
+	margin: 0;
+	padding: 0;
+}
+
+.room-content .room-infos .room-state
+{
+	font-size: 12px;
+	color: #ffffff;
+}
+
+.room-content .room-chat-container
+{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	margin-right: 5px;
+	width: 20%;
+	height: 75vh;
+	/*background-color: rgba(0,0,0,0.5);*/
+}
+
+.room-content .room-chat-container li
+{
+	position: relative;
+	width: 100%;
+	list-style-type: none;
+	background-color: rgba(0,0,0,0.7);
+	padding: 5px;
+	min-height: 32px;
+	border-left: 2px #ffffff solid;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+	border-bottom-left-radius: 3px;
+}
+
+.room-content .room-chat-container li .avatar
+{
+	position: absolute;
+	border:2px #ffffff solid;
+	height: 30px;
+	width: 30px;
+	margin-left: -35px;
+	margin-top:-5px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	transition-duration:0.3s;
+}
+
+.room-content .room-chat-container li:hover .avatar
+{
+	
+	display: block;
+	opacity: 1.0;
+}
+
+.room-content .room-chat-container li p
+{
+	font-size: 12px;
+	color: #cccccc;
+}
