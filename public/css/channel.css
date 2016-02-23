@@ -5,9 +5,14 @@
 	left: 0;
 	width: 100%!important;
 	height: 100%!important;
+	padding-top: 56.25%;
+}
+.vjs-fullscreen
+{
+	padding-top: 0px;
 }
 
-.room-content
+.channel-content
 {
 	position: absolute;
 	z-index: 2;
@@ -16,7 +21,7 @@
 	height: 100%;
 }
 
-.room-content .room-infos
+.channel-content .channel-infos
 {
 	text-align: right;
 	position: absolute;
@@ -31,7 +36,7 @@
     background: linear-gradient(rgba(0,0,0,0.0), rgba(0,0,0,0.6)); /* Standard syntax */
 }
 
-.room-content .room-infos .room-icon
+.channel-content .channel-infos .channel-icon
 {
 	float: right;
 	width: 50px;
@@ -41,7 +46,7 @@
 	margin-left: 20px;
 }
 
-.room-content .room-infos .room-name
+.channel-content .channel-infos .channel-name
 {
 	font-size: 20px;
 	color: #ffffff;
@@ -49,13 +54,13 @@
 	padding: 0;
 }
 
-.room-content .room-infos .room-state
+.channel-content .channel-infos .channel-state
 {
 	font-size: 12px;
 	color: #ffffff;
 }
 
-.room-content .room-chat-container
+.channel-content .channel-chat-container
 {
 	position: absolute;
 	right: 0;
@@ -66,7 +71,7 @@
 	/*background-color: rgba(0,0,0,0.5);*/
 }
 
-.room-content .room-chat-container li
+.channel-content .channel-chat-container li
 {
 	position: relative;
 	width: 100%;
@@ -80,7 +85,7 @@
 	border-bottom-left-radius: 3px;
 }
 
-.room-content .room-chat-container li .avatar
+.channel-content .channel-chat-container li .avatar
 {
 	position: absolute;
 	border:2px #ffffff solid;
@@ -93,14 +98,14 @@
 	transition-duration:0.3s;
 }
 
-.room-content .room-chat-container li:hover .avatar
+.channel-content .channel-chat-container li:hover .avatar
 {
 	
 	display: block;
 	opacity: 1.0;
 }
 
-.room-content .room-chat-container li p
+.channel-content .channel-chat-container li p
 {
 	font-size: 12px;
 	color: #cccccc;

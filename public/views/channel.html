@@ -1,25 +1,18 @@
-<video id="room-player" class="video-js" autoplay preload="auto"
-  poster="http://lorempixel.com/1200/800/" data-setup="{}">
-    <source src="http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_20mb.mp4" type='video/mp4'>
-    <p class="vjs-no-js">
-      To view this video please enable JavaScript, and consider upgrading to a web browser that
-      <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-</video>
+<video id="channel-player" class="video-js vjs-fullscreen"></video>
 
-<div class="room-content">
-	<div class="room-infos">
-		<div class="room-icon" style="background-image:url('http://lorempixel.com/100/100/')"></div>
-		<p class="room-name">{{channel.name}}</p>
-		<p class="room-state">EN DIRECT</p>
+<div class="channel-content">
+	<div class="channel-infos">
+		<div class="channel-icon" style="background-image:url('http://lorempixel.com/100/100/')"></div>
+		<p class="channel-name">{{channel.name}}</p>
+		<p class="channel-state">EN DIRECT</p>
 	</div>
-	<ul class="room-chat-container">
-		<li class="room-message" ng-repeat="message in socketManager.messages">
+	<ul class="channel-chat-container">
+		<li class="channel-message" ng-repeat="message in socketManager.messages">
 			<div class="avatar" style="background-image:url('{{message.user.avatar_url}}')" title="{{message.user.nickname}}"></div>
 			<p>{{message.message}}</p>
 		</li>
 	</ul>
-	<form class="room-chat-input-container" ng-show="chatInputActive" ng-submit="socketManager.chat.emit.message(chatInputMessage);">
-		<input class="room-chat-input" type="text" name="text" placeholder="Type something..." ng-model="chatInputMessage" autocomplete="off">
+	<form class="channel-chat-input-container" ng-show="chatInputActive" ng-submit="socketManager.chat.emit.message(chatInputMessage);">
+		<input class="channel-chat-input" type="text" name="text" placeholder="Type something..." ng-model="chatInputMessage" autocomplete="off">
 	</form>
 </div>
