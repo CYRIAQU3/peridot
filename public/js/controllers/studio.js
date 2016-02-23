@@ -1,12 +1,15 @@
 app.controller('studioCtrl', function($scope, $http,$cookies)
 {
-	var channelId = 1;
+    $scope.channel = {};
+    var channelId = 1;
     $http.get(apiIndex+"/channels/"+channelId)
     .then(function(r) {
         $scope.channel = r.data.channels[0];
+        console.log($scope.channel);
         $http.get(apiIndex+"/channels/"+channelId+"/files")
 	    .then(function(ra) {
 	        $scope.channel.files = ra.data.files;
+            $scope.socketManager.initializeServerConnect($scope.channel.id);
 	    });
     });
 

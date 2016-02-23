@@ -10,7 +10,7 @@
 				<div class="file-settings btn-group pull-right">
 					<button class="btn btn-danger" data-toggle="modal" data-target="#remove-file-modal-{{file.id}}"><i class="mdi mdi-delete"></i></button>
 		  			<button class="btn btn-info" data-toggle="modal" data-target="#edit-file-modal-{{file.id}}"><i class="mdi mdi-pencil"></i></button>
-		  			<button class="btn btn-success"><i class="mdi mdi-play-circle-outline"></i></button>
+		  			<button class="btn btn-success" ng-click="socketManager.channel.emit.file(file);"><i class="mdi mdi-play-circle-outline"></i></button>
 				</div>
 			</td>
 		</tr>

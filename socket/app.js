@@ -87,18 +87,20 @@ io.on('connection', function (socket) {
   		console.log(socket.user.nickname+' (in '+currentChannel+') "'+message+'"');
   	});
 
-    socket.on("channelEvent",function(data,channelId)   //send an event to all clients connected to the channel
+    socket.on("channel",function(data,channelId)   //send an event to all clients connected to the channel
     {
       channelManager[data.event](data,socket);
     });
 
     var channelManager = {
-      setFile : function(data)
+      file : function(data)
       {
-        io.to(currentChannel).emit("channel",{event:data.event,url:data.url,time:data.time});
+        console.log(data);
+        console.log("received for channel "+currentChannel);
+        socket.broadcast.to(currentChannel).emit("channel",{event:data.event,url:data.url,time:data.time});
       },
 
-      setBanner : function(data)
+      banner : function(data)
       {
         io.to(currentChannel).emit("channel",{event:data.event,text:data.text,show:data.show});
       }
