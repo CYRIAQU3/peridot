@@ -1,7 +1,7 @@
 <video id="channel-player" class="video-js vjs-fullscreen"></video>
 
 <div class="channel-content">
-	<div class="channel-infos">
+	<div class="channel-infos" ng-class="{online: channel.broadcast.online}">
 		<div class="channel-icon" style="background-image:url('http://lorempixel.com/100/100/')"></div>
 		<p class="channel-name">{{channel.name}}</p>
 		<p class="channel-state">OFFLINE</p>

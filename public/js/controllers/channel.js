@@ -3,6 +3,8 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
 
 	$scope.channelId = $stateParams.channelId;
 	$scope.player = undefined;
+	$scope.channel = {};
+	$scope.channel.broadCast = {};
 	$scope.chatInputActive = false;
 	$scope.chatInputMessage = "";
 	$scope.ready = false;
@@ -172,6 +174,15 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
                   console.log("Signal received :");
                   console.log(data);
                   $scope.player.src(data.url);
+              },
+              broadcast : function(data)
+              {
+              	$scope.channel.broadcast = data.data;
+              	$scope.$apply();
+              	if($scope.player.src() != $scope.channel.broadcast.file.url)
+              	{
+              		$scope.player.src($scope.channel.broadcast.file.url);
+              	}	
               }
           },
           emit : {
