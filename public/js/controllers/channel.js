@@ -17,6 +17,13 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
 		console.log("Error wrong channel");
 	});
 
+  $(document).click(function()
+  {
+    if($scope.chatInputActive)
+    {
+       $(".channel-chat-input").focus();
+    }
+  });
 
 	// toggle chat input
 	$(document).keypress(function(event){
@@ -24,12 +31,12 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
 	    if(keycode == '13'){	//enter
 	        $scope.chatInputActive = true;
 	        $scope.$apply();
-	        $(".room-chat-input").focus();
+	        $(".channel-chat-input").focus();
 	    }
 	    if(keycode == '27'){		//esc
 	    	$scope.chatInputActive = false;
 	        $scope.$apply();
-	        $(".room-chat-input").blur();
+	        $(".channel-chat-input").blur();
 	    }
 	});
 
@@ -149,7 +156,11 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
           },
           receive : {
               message : function(data){
+
                   $scope.socketManager.messages.push(data);
+                  if($scope.socketManager.messages.length > 10){
+                    $scope.socketManager.messages.shift();
+                  }
                   $scope.$apply();
               }
           }

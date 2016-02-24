@@ -4,15 +4,16 @@
 	<div class="channel-infos">
 		<div class="channel-icon" style="background-image:url('http://lorempixel.com/100/100/')"></div>
 		<p class="channel-name">{{channel.name}}</p>
-		<p class="channel-state">EN DIRECT</p>
+		<p class="channel-state">OFFLINE</p>
 	</div>
 	<ul class="channel-chat-container">
-		<li class="channel-message" ng-repeat="message in socketManager.messages">
-			<div class="avatar" style="background-image:url('{{message.user.avatar_url}}')" title="{{message.user.nickname}}"></div>
+		<li class="channel-message animated fadeInRight" ng-repeat="message in socketManager.messages" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}">
+			<img class="avatar" ng-src="img/avatars/{{message.user.id}}.jpg" title="{{message.user.nickname}}" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}" color-thief cross-origin color-thief-dominant="colors.dominantColor">
 			<p>{{message.message}}</p>
 		</li>
 	</ul>
 	<form class="channel-chat-input-container" ng-show="chatInputActive" ng-submit="socketManager.chat.emit.message(chatInputMessage);">
-		<input class="channel-chat-input" type="text" name="text" placeholder="Type something..." ng-model="chatInputMessage" autocomplete="off">
+			<input class="channel-chat-input" type="text" name="text" placeholder="Type something..." ng-model="chatInputMessage" autocomplete="off">
+			<i class="mdi mdi-keyboard-return"></i>
 	</form>
 </div>

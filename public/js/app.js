@@ -2,7 +2,8 @@ var apiIndex = "http://localhost:3000";
 var socketIndex = "http://localhost:5000";
 var app = angular.module('peridot', [
 'ui.router',
-'ngCookies'
+'ngCookies',
+'ngColorThief'
     ]);
 
 app.config(['$httpProvider',
@@ -18,10 +19,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.when('/studio', '/studio/files');
   //
   // Now set up the states
+
   $stateProvider
     .state('index', {
       url: "/",
-      templateUrl: "views/index.html"
+      templateUrl: "views/index.html",
+      reload: true
     })
     .state('login', {
       url: "/login",
@@ -36,12 +39,14 @@ app.config(function($stateProvider, $urlRouterProvider) {
     .state('channel',{
       url : "/{channelId:int}",
       templateUrl:"views/channel.html",
-      controller:"channelCtrl"
+      controller:"channelCtrl",
+      reload: true
     })
     .state('studio',{
       url : "/studio",
       templateUrl:"views/studio.html",
-      controller:"studioCtrl"
+      controller:"studioCtrl",
+      reload: true
     })
     .state('studio.files',{
       url : "/files",
