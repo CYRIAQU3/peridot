@@ -178,11 +178,16 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
               broadcast : function(data)
               {
               	$scope.channel.broadcast = data.data;
-              	$scope.$apply();
-              	if($scope.player.src() != $scope.channel.broadcast.file.url)
+              	if($scope.player.src() != $scope.channel.broadcast.file.url) //change src if != same
               	{
               		$scope.player.src($scope.channel.broadcast.file.url);
-              	}	
+              	}
+
+                if(getDiff($scope.channel.broadcast.file.time,$scope.player.currentTime()) > 2)  // recatch the server time if diff > 2s
+                {
+                  $scope.player.currentTime($scope.channel.broadcast.file.time);
+                }
+                $scope.$apply();
               }
           },
           emit : {
@@ -194,3 +199,13 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
       }
   };
 });
+
+function getDiff(num1, num2)
+{
+  if (num1 > num2){
+    return num1-num2
+  }
+  else{
+    return num2-num1
+  }
+}

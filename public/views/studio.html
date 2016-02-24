@@ -1,4 +1,4 @@
-<div id="studio">
+<div id="studio" style="margin-top:50px;">
 	<div class="row">
 		<div class="col-md-2 btn-group-vertical">
 			  <a ui-sref="studio.files" class="btn btn-default">Fichiers</a>
@@ -8,10 +8,15 @@
 		<div class="col-md-6" ui-view></div>
 		<div class="col-md-4">
 			<div class="col-md-12">
-				Player
+				<video id="studio-player" class="video-js" style=""></video>
 			</div>
 			<div class="col-md-12">
-				and chat
+				<ul>
+					<li class="studio-message animated fadeInRight" ng-repeat="message in socketManager.messages" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}">
+						<img class="avatar" ng-src="img/avatars/{{message.user.id}}.jpg" title="{{message.user.nickname}}" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}" color-thief cross-origin color-thief-dominant="colors.dominantColor">
+						<p>{{message.message}}</p>
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>

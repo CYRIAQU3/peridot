@@ -62,14 +62,6 @@ io.on('connection', function (socket) {
 	  			users : new Array(),
           file : {}
 	  		};
-
-        var ping = function(){
-          io.to(currentChannel).emit("channel",{event:"broadcast",data:channels[currentChannel]});
-          console.log("ping by "+currentChannel);
-        }
-        setInterval(function(){
-          ping();
-        },5000);
   		}
   		
 
@@ -103,8 +95,7 @@ io.on('connection', function (socket) {
     });
 
     var channelManager = {
-      file : function(data)
-      {
+      file : function(data){
         console.log(data);
         console.log("received for channel "+currentChannel);
         channels[currentChannel].online = true;
@@ -114,8 +105,13 @@ io.on('connection', function (socket) {
         socket.broadcast.to(currentChannel).emit("channel",{event:data.event,url:data.url,time:data.time});
       },
 
-      banner : function(data)
-      {
+      broadcast : function(data){
+        console.log("Ping received for channel "+currentChannel);
+        console.log(data);
+        socket.broadcast.to(currentChannel).emit("channel",{event:"broadcast",data:data.broadcast});
+      },
+
+      banner : function(data){
         io.to(currentChannel).emit("channel",{event:data.event,text:data.text,show:data.show});
       }
 
