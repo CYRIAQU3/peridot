@@ -22,3 +22,72 @@
 {
 	display: block;
 }
+
+.studio-chat-container
+{
+	background-color: rgba(0,0,0,0.5);
+	border:1px #000000 solid;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	height: 300px;
+	width: 400px;
+	overflow-y:scroll;
+}
+
+.studio-chat-container li
+{
+	list-style-type: none;
+	padding: 5px;
+	min-height: 32px;
+	word-wrap: break-word;
+}
+
+.studio-chat-container li .avatar
+{
+	position: absolute;
+	border:2px #ffffff solid;
+	height: 30px;
+	width: 30px;
+	background-size: cover;
+	margin-left: -35px;
+	margin-top:-5px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	transition-duration:0.3s;
+}
+
+.studio-chat-container li:hover .avatar
+{
+	
+	display: block;
+	opacity: 1.0;
+}
+
+.studio-chat-container li p
+{
+	font-size: 12px;
+	color: #cccccc;
+}
+
+.studio-chat-input-container
+{
+	position: fixed;
+	width: 30%;
+	left: 33%;
+	bottom: 0;
+	text-align: center;
+	border:2px #ffffff solid;
+	margin-bottom: 100px;
+	background-color: rgba(0,0,0,0.4);
+	border-radius: 10px;
+	font-size: 40px;
+}
+
+.studio-chat-input-container .studio-chat-input
+{
+	padding: 10px;
+	outline:0;
+	background-color: transparent;
+	border-width: 0px;
+}

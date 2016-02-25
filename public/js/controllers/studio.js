@@ -28,6 +28,11 @@ app.controller('studioCtrl', function($scope, $http,$cookies)
     });
   });
 
+  $(document).on("click",$("#studio-player"),function(e)    // send a ping when the player is clicked
+  {
+    $scope.socketManager.channel.emit.broadcast();
+  });
+
   $scope.setCurrentFile = function(url){
     $scope.player.src(url);
     $scope.channel.broadcast.online = true;

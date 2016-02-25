@@ -8,12 +8,12 @@
 		<div class="col-md-6" ui-view></div>
 		<div class="col-md-4">
 			<div class="col-md-12">
-				<video id="studio-player" class="video-js" style=""></video>
+				<video id="studio-player" class="video-js"></video>
 			</div>
 			<div class="col-md-12">
-				<ul>
-					<li class="studio-message animated fadeInRight" ng-repeat="message in socketManager.messages" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}">
-						<img class="avatar" ng-src="img/avatars/{{message.user.id}}.jpg" title="{{message.user.nickname}}" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}" color-thief cross-origin color-thief-dominant="colors.dominantColor">
+				<ul class="studio-chat-container">
+					<li class="studio-message" ng-repeat="message in socketManager.messages">
+						<img class="avatar" ng-src="img/avatars/{{message.user.id}}.jpg" title="{{message.user.nickname}}">
 						<p>{{message.message}}</p>
 					</li>
 				</ul>
