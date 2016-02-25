@@ -11,7 +11,7 @@ function($httpProvider) {
     $httpProvider.defaults.withCredentials = true;
 }]);
 
-app.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
 
   //
   // For any unmatched url, redirect to /
@@ -56,6 +56,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : "/settings",
       templateUrl:"views/studio/settings.html"
     });
+
+    $locationProvider.html5Mode(true);
 });
 
 app.controller('mainCtrl', ['$scope', '$http','$rootScope','$cookies', function($scope, $http,$rootScope,$cookies)

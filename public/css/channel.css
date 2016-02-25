@@ -107,11 +107,21 @@
 {
 	position: absolute;
 	right: 0;
-	bottom: 0;
+	top: 0;
+	margin-top:50px;
 	margin-right: 5px;
 	width: 20%;
 	height: 75vh;
 	/*background-color: rgba(0,0,0,0.5);*/
+}
+
+
+@media only screen and (max-width:800px) 
+{
+	.channel-content .channel-chat-container
+	{
+		width:30%;
+	}
 }
 
 .channel-content .channel-chat-container li
@@ -170,6 +180,15 @@
 	background-color: rgba(0,0,0,0.4);
 	border-radius: 10px;
 	font-size: 40px;
+}
+
+@media only screen and (max-width:800px) 
+{
+	.channel-chat-input-container
+	{
+		width: 100%;
+		left:0;
+	}
 }
 
 .channel-chat-input-container .channel-chat-input

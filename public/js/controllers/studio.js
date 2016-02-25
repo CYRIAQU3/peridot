@@ -11,7 +11,8 @@ app.controller('studioCtrl', function($scope, $http,$cookies)
     online : false,
     file : {
       url : "",
-      time:0
+      time:0,
+      paused : false
     }
   };
 
@@ -188,6 +189,7 @@ app.controller('studioCtrl', function($scope, $http,$cookies)
            broadcast : function(){
               console.log($scope.channel);
               $scope.channel.broadcast.file.time = $scope.player.currentTime();
+              $scope.channel.broadcast.file.paused = $scope.player.paused();
               $scope.socket.emit('channel',{ event : "broadcast",broadcast:$scope.channel.broadcast,auth_token : $cookies.get("pd_token") });
            }
         }

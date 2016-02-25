@@ -7,7 +7,7 @@
 		<p class="channel-state">OFFLINE</p>
 	</div>
 	<ul class="channel-chat-container">
-		<li class="channel-message animated fadeInRight" ng-repeat="message in socketManager.messages" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}">
+		<li class="channel-message animated fadeInRight col-md-12" ng-repeat="message in socketManager.messages" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}">
 			<img class="avatar" ng-src="img/avatars/{{message.user.id}}.jpg" title="{{message.user.nickname}}" ng-style="{'border-color': 'rgb('+colors.dominantColor[0]+', '+colors.dominantColor[1]+', '+colors.dominantColor[2]+')'}" color-thief cross-origin color-thief-dominant="colors.dominantColor">
 			<p>{{message.message}}</p>
 		</li>

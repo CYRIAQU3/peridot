@@ -158,12 +158,13 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
           },
           receive : {
               message : function(data){
-
+                  var id = Math.floor((Math.random() * 10000) + 1);
                   $scope.socketManager.messages.push(data);
                   if($scope.socketManager.messages.length > 10){
                     $scope.socketManager.messages.shift();
                   }
                   $scope.$apply();
+                  $(".channel-chat-container li:last").attr('id',"message-"+id);
               }
           }
       },
@@ -187,6 +188,16 @@ app.controller('channelCtrl', function($scope, $http,$stateParams,$cookies)
                 {
                   $scope.player.currentTime($scope.channel.broadcast.file.time);
                 }
+
+                if($scope.channel.broadcast.file.paused)
+                {
+                  $scope.player.pause();
+                }
+                else
+                {
+                  $scope.player.play();
+                }
+
                 $scope.$apply();
               }
           },
