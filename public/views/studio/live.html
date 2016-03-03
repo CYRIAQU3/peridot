@@ -1,15 +1,11 @@
 <div class="row">
 	<table class="table">
-		<tr class="file-bloc row" data-toggle="modal" data-target="#add-file-modal">
-			<td class="col-md-8">Ajouter un fichier</td>
-			<td class="col-md-4"></td>
-		</tr>
 		<tr ng-repeat="file in channel.files" class="file-bloc row">
-			<td class="col-md-8">{{file.name}}</td>
+      <td class="col-md-2"><i class="mdi mdi-video"></i></td>
+			<td class="col-md-6">{{file.name}}</td>
 			<td class="col-md-4">
 				<div class="file-settings btn-group pull-right">
-					<button class="btn btn-danger" data-toggle="modal" data-target="#remove-file-modal-{{file.id}}"><i class="mdi mdi-delete"></i></button>
-		  			<button class="btn btn-info" data-toggle="modal" data-target="#edit-file-modal-{{file.id}}"><i class="mdi mdi-pencil"></i></button>
+		  		<button class="btn btn-success" ng-click="setCurrentFile(file.id)"><i class="mdi mdi-play-circle-outline"></i></button>
 				</div>
 			</td>
 		</tr>

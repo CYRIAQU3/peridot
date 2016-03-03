@@ -25,6 +25,16 @@ app.controller('studioCtrl', function($scope, $http,$cookies)
         $scope.channel.files = ra.data.files;
         $scope.socketManager.initializeServerConnect($scope.channel.id);
         $scope.player = videojs("studio-player", {"controls": true, "autoplay": true, "preload": "auto",techOrder: ["html5", "youtube", "flash"]});
+        
+        $scope.player.on('ended', function()    //auto play next file
+        {
+          $scope.playNextFile();
+        });
+
+        $scope.player.on('error', function()    //auto play next file
+        {
+          $scope.playNextFile();
+        });
     });
   });
 
@@ -33,10 +43,10 @@ app.controller('studioCtrl', function($scope, $http,$cookies)
     $scope.socketManager.channel.emit.broadcast();
   });
 
-  $scope.setCurrentFile = function(url){
-    $scope.player.src(url);
+  $scope.setCurrentFile = function(fileId){
     $scope.channel.broadcast.online = true;
-    $scope.channel.broadcast.file.url = url;
+    $scope.channel.broadcast.file = _.findWhere($scope.channel.files, {id: fileId});
+    $scope.player.src($scope.channel.broadcast.file.url);
     $scope.socketManager.channel.emit.broadcast();
   }
 
@@ -88,6 +98,20 @@ app.controller('studioCtrl', function($scope, $http,$cookies)
             console.log("error");
             console.log(r);
         });
+    }
+
+    $scope.playNextFile = function(){
+      var currentFileIdx = _.indexOf($scope.channel.files, $scope.channel.broadcast.file);
+      if($scope.channel.files[currentFileIdx+1]){
+        var nextFileId = $scope.channel.files[currentFileIdx+1].id;
+      }
+      else
+      {
+        var nextFileId = $scope.channel.files[0].id;
+      }
+
+      $scope.setCurrentFile(nextFileId);
+      
     }
 
     $scope.socketManager = {

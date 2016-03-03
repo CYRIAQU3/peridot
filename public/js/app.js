@@ -52,6 +52,10 @@ app.config(function($stateProvider, $urlRouterProvider,$locationProvider) {
       url : "/files",
       templateUrl:"views/studio/files.html"
     })
+    .state('studio.live',{
+      url : "/live",
+      templateUrl:"views/studio/live.html"
+    })
     .state('studio.settings',{
       url : "/settings",
       templateUrl:"views/studio/settings.html"
